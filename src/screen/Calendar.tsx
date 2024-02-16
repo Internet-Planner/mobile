@@ -141,7 +141,7 @@ export default class TimelineCalendarScreen extends Component {
     const ThemeCalendar = {
       calendarBackground: "#3f0d6b",   // couleur pour le fond du calendrier
       selectedDayBackgroundColor: "#48008e", // couleur quand on sélectionne le jour que l'on veux
-      selectedDayTextColor: "#FFFFFF", // text color for selected day
+      selectedDayTextColor: "#FFFFFF", //  couleur de text pour le jour sélectionner
       todayTextColor: "#a62ae7", //  couleur pour le text du jour
       dayTextColor: "#FFFFFF", //  couleur pour le text des autres jours
       textSectionTitleColor: "#FFFFFF", //  couleur pour le text des jour de la semaine
@@ -174,6 +174,7 @@ export default class TimelineCalendarScreen extends Component {
           initialTime={INITIAL_TIME}
         />
       </CalendarProvider>
+      
     );
   }
 }

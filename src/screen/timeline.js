@@ -1,178 +1,103 @@
-import React from 'react';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
+import {CalendarUtils } from "react-native-calendars";
+import { Card } from "react-native-paper";
 
-const Timeline = () => {
-  const data = [
-    { id: '1', text: 'Événement 1' },
-    { id: '2', text: 'Événement 2' },
-    { id: '3', text: 'Événement 3' },
-    // Ajoutez d'autres événements ici
-  ];
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.bar} />
-      <FlatList
-        data={data}
-        horizontal
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text>{item.text}</Text>
-          </View>
-        )}
-      />
-    </View>
+const today = new Date();
+export const getDate = (offset = 0) =>
+  CalendarUtils.getCalendarDateString(
+    new Date().setDate(today.getDate() + offset)
   );
-};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bar: {
-    width: 2, // Largeur de la barre au milieu
-    backgroundColor: 'black', // Couleur de la barre
-    flex: 1, // Pour occuper tout l'espace disponible
-  },
-  card: {
-    backgroundColor: 'lightgray', // Couleur de la carte
-    padding: 10,
-    margin: 5,
-    borderRadius: 5,
-    width: 150, // Largeur de chaque carte
-  },
-});
+const image = require("../../assets/Mockup.png");
 
-export default Timeline;
-
-
-
-
-
-/* import React from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
-
-const timelineData = [
-  {
-    id: "1",
-    title: "Événement 1",
-    date: "2023-10-01",
-    description: "Description de l'événement 1",
-  },
+const Data = [
+  { id: "1", title: "Titre de la Vidéo de Squeezi", time: "10:00" },
   {
     id: "2",
-    title: "Événement 2",
-    date: "2023-10-10",
-    description: "Description de l'événement 2",
+    start: `${getDate()} 01:15:00`,
+    end: `${getDate()} 02:30:00`,
+    image: require("../../assets/miniature_seb.jpeg"),
+    title: "Que sont-ils devenus ?",
+    time: "12:30",
   },
+  { id: "3", title: "Événement 3", time: "15:45" },
+  { id: "4", title: "je casse le quatrième mur", time: "16:55" },
+
   {
-    id: "3",
-    title: "Événement 3",
-    date: "2023-10-20",
-    description: "Description de l'événement 3",
-  },
-  // Ajoutez plus d'événements ici
-];
-
-const TimelineCard = ({ title, date, description }) => (
-  <View style={styles.card}>
-    <Text style={styles.cardTitle}>{title}</Text>
-    <Text style={styles.cardDate}>{date}</Text>
-    <Text style={styles.cardDescription}>{description}</Text>
-  </View>
-);
-
-const Timeline = () => {
-  return (
-    <FlatList
-      data={timelineData}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <TimelineCard {...item} />}
-    />
-  );
-};
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    padding: 16,
-    margin: 10,
-    elevation: 4,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  cardDate: {
-    fontSize: 14,
-    color: "gray",
-  },
-  cardDescription: {
-    fontSize: 16,
-  },
-});
-
-export default Timeline; */
-
-/* import { View, Text, FlatList, StyleSheet } from "react-native";
-
-const timelineData = [
-  {
-    id: "1",
-    title: "évenement 1",
-    date: "2023-10-15",
-    description: "Description",
+    id: "5",
+    start: `${getDate()} 00:15:00`,
+    end: `${getDate()} 01:00:00`,
+    image: require("../../assets/miniature.jpg"),
+    title: "comment faire une miniature",
+    time: "17:10",
   },
 ];
 
-const TimelineCard = ({ title, date, description }) => {
-  <View style={styles.card}>
-    <Text style={styles.cardTitle}>{title}</Text>
-    <Text style={styles.cardDate}>{date}</Text>
-    <Text style={styles.cardDescription}>{description}</Text>
-  </View>;
-};
-
 const Timeline = () => {
   return (
-    <FlatList
-      data={timelineData}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <TimelineCard {...item} />}
-    />
+    <ImageBackground source={image} resizeMode="cover" style={styles.Fond}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 25,
+        }}
+      >
+        <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
+        <ScrollView horizontal>
+          {Data.map((item, key) => (
+            <Card key={key} style={key == 0 ? [styles.mycard, { marginLeft: 15 }] : styles.mycard}>
+              <Image
+                source={item.image}
+                style={{ width: 170, height: 100, alignSelf: "center" }}
+              />
+              <Text style={styles.title}>{item.title}</Text>
+            </Card>
+          ))}
+        </ScrollView>
+        <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
+      </View>
+      {/*{Data.map((item) => (
+          <Text key={item.id}>{item.title}</Text>
+        ))}
+
+        {Data.map((item, index) => (
+          <Image
+            key={index}
+            source={item.image}
+            style={{ width: 170, height: 100 }}
+          />
+        ))} */}
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
-  card: {
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    padding: 16,
-    margin: 10,
-    elevation: 4,
+  Fond: {
+    width: "100%",
+    height: "100%",
   },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
+  mycard: {
+    marginTop: 10,
+    marginLeft: 50,
+    width: 190,
+    height: 130,
   },
-  cardDate: {
-    fontSize: 14,
-    color: "gray",
-  },
-  cardDescription: {
-    fontSize: 16,
+  title: {
+    textAlign: "center",
   },
 });
 
 export default Timeline;
- */

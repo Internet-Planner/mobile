@@ -6,35 +6,34 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  Linking,
 } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../context/AuthContext";
 
 const image = require("../../assets/Mockup.png");
 const cercle = require("../../assets/cercle.png");
 
-/* const urlGoogle = "https://google.com";
-
-const OpenURLButton = ({ url, children }) => {
-  const handlePress = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(url);
-
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
-  }, [url]);
-
-  return <Button title={children} onPress={handlePress} />;
-}; */
-
 const Home = () => {
+  const {login} = useContext(AuthContext);
   const navigation = useNavigation();
+
+  const Google = () => {
+    const url = 'https://www.google.com';
+    Linking.openURL(url);
+  }
+
+  const Twitch = () => {
+    const url = 'https://www.twitch.com';
+    Linking.openURL(url);
+  }
+
+  const Youtube = () =>{
+    const url ='https://www.youtube.com';
+    Linking.openURL(url);
+  }
 
   return (
     <View>
@@ -59,14 +58,14 @@ const Home = () => {
             <TextInput style={styles.textinput}></TextInput>
 
             <View style={{flexDirection: "row"}}>
-              <Text style={styles.text}>Password</Text>
+              <Text style={styles.text}>Password </Text>
               <Text>Forgot you password</Text>
             </View>
 
             <TextInput style={styles.textinput}></TextInput>
 
             <View style={styles.Viewbutton}>
-              <TouchableOpacity onPress={() => navigation.navigate("calendar")}>
+              <TouchableOpacity onPress={() => {login()}}>
                 <LinearGradient
                   colors={[
                     "rgba(0, 0, 0, 1) 0%",
@@ -124,7 +123,7 @@ const Home = () => {
 
           <View style={styles.Réseau}>
             {/* Button pour Google */}
-            <TouchableOpacity style={styles.buttonRéseau}>
+            <TouchableOpacity style={styles.buttonRéseau} onPress={Google}>
               <View>
                 <Image
                   source={require("../../assets/logo-google.png")}
@@ -133,10 +132,9 @@ const Home = () => {
               </View>
             </TouchableOpacity>
 
-            {/* <OpenURLButton url={urlGoogle}>Open Supported URL</OpenURLButton> */}
 
             {/* Button pour Twitch */}
-            <TouchableOpacity style={styles.buttonRéseau}>
+            <TouchableOpacity style={styles.buttonRéseau} onPress={Twitch}>
               <View>
                 <Image
                   source={require("../../assets/logo-twitch.png")}
@@ -146,7 +144,7 @@ const Home = () => {
             </TouchableOpacity>
 
             {/* Button pour Youtube */}
-            <TouchableOpacity style={styles.buttonRéseau}>
+            <TouchableOpacity style={styles.buttonRéseau} onPress={Youtube} >
               <View>
                 <Image
                   source={require("../../assets/logo-yt.png")}

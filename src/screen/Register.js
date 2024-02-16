@@ -44,7 +44,7 @@ const Register = () => {
           <TextInput style={styles.textinput}></TextInput>
 
           <View style={styles.Viewbutton}>
-            <TouchableOpacity onPress={() => navigation.navigate("calendar")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Calendrier")}>
               <LinearGradient
                 colors={[
                   "rgba(0, 0, 0, 1) 0%",
@@ -74,6 +74,13 @@ const Register = () => {
                   <Text style={styles.text}>create you account</Text>
                 </View>
               </LinearGradient>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ flexDirection: "row", marginTop: 25 }}>
+            <Text style={styles.text}>Vous avez déjà un compte ? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+              <Text>Se connecter</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Home from "../screen/Home";
 import TimelineCalendarScreen from "../screen/Calendar";
-import Timeline from "../screen/timeline";
 import Register from "../screen/Register";
+import Timeline from "../screen/Timeline";
 
 
 const Tab = createBottomTabNavigator();
@@ -28,7 +28,7 @@ const BottomNav = () => {
             iconName = focused
             ? "clipboard"
             : "clipboard-outline";
-          }else if(route.name === "timeline"){
+          }else if(route.name === "Timeline"){
             iconName = focused
 
             ? 
@@ -45,8 +45,8 @@ const BottomNav = () => {
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false}}/>
       <Tab.Screen name="Calendrier" component={TimelineCalendarScreen}/>
-      <Tab.Screen name="timeline" component={Timeline}/>
-      <Tab.Screen name="Register" component={Register} />
+      <Tab.Screen name="Timeline" component={Timeline}/>
+      <Tab.Screen name="Register" component={Register} options={{headerShown: false}} />
 
     </Tab.Navigator>
   );
