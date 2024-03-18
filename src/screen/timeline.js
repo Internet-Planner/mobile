@@ -6,8 +6,10 @@ import {
   StyleSheet,
   ImageBackground,
   ScrollView,
+  Touchable,
+  TouchableOpacity,
 } from "react-native";
-import {CalendarUtils } from "react-native-calendars";
+import { CalendarUtils } from "react-native-calendars";
 import { Card } from "react-native-paper";
 
 const today = new Date();
@@ -51,19 +53,24 @@ const Timeline = () => {
           marginTop: 25,
         }}
       >
-        <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
         <ScrollView horizontal>
           {Data.map((item, key) => (
-            <Card key={key} style={key == 0 ? [styles.mycard, { marginLeft: 15 }] : styles.mycard}>
-              <Image
-                source={item.image}
-                style={{ width: 170, height: 100, alignSelf: "center" }}
-              />
-              <Text style={styles.title}>{item.title}</Text>
+            <Card
+              key={key}
+              style={
+                key == 0 ? [styles.mycard, { marginLeft: 15 }] : styles.mycard
+              }
+            >
+              <TouchableOpacity>
+                <Image
+                  source={item.image}
+                  style={{ width: 170, height: 100, alignSelf: "center" }}
+                />
+                <Text style={styles.title}>{item.title}</Text>
+              </TouchableOpacity>
             </Card>
           ))}
         </ScrollView>
-        <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
       </View>
       {/*{Data.map((item) => (
           <Text key={item.id}>{item.title}</Text>
