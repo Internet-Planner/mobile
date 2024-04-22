@@ -1,0 +1,23 @@
+[
+    {
+        "link": "https://www.youtube.com/watch?v=M1uedhyydjE",
+        "description": "une autre vidéo'",
+        "thumbnail": "../../assets/miniature_seb.jpeg",
+        "created_at": "2024-03-21 00:15:00",
+        "updated_at": "2024-03-21 01:00:00"
+    },
+    {
+        "link": "https://www.youtube.com/watch?v=M1uedfffhyydjE",
+        "description": "Vidéo Seb'",
+        "thumbnail": "../../assets/miniature_seb.jpeg",
+        "created_at": "2024-03-21 01:30:00",
+        "updated_at": "2024-03-21 02:00:00"
+    },
+    {
+        "link": "https://www.twitch.tv/videos/2089615949",
+        "description": "React Poker society avec Skyyart",
+        "thumbnail": "../../assets/miniature.jpg",
+        "created_at": "2024-03-22 01:15:00",
+        "updated_at": "2024-03-22 02:30:00"
+    }
+]

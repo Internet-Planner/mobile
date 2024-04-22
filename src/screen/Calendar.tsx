@@ -13,20 +13,22 @@ import {
   CalendarUtils,
 } from "react-native-calendars";
 
-import { timelineEvents, getDate } from "../mocks/timelineEvents";
+import { getDate } from "../mocks/timelineEvents";
+import datadb from "../../datadb.json";
 
 const INITIAL_TIME = { hour: 9, minutes: 0 };
-const EVENTS: TimelineEventProps[] = timelineEvents;
+// const EVENTS: TimelineEventProps[] = timelineEvents;
 
 export default class TimelineCalendarScreen extends Component {
   state = {
     currentDate: getDate(),
-    events: EVENTS,
-    eventsByDate: groupBy(EVENTS, (e) =>
-      CalendarUtils.getCalendarDateString(e.start)
-    ) as {
-      [key: string]: TimelineEventProps[];
-    },
+    // events: EVENTS,
+    // eventsByDate: groupBy(EVENTS, (e) =>
+    //   CalendarUtils.getCalendarDateString(e.start)
+    // ) as {
+    //   [key: string]: TimelineEventProps[];
+    // },
+    eventsByDate: groupBy(datadb, (e) => e.created_at),
   };
 
   marked = {
@@ -136,8 +138,8 @@ export default class TimelineCalendarScreen extends Component {
   };
 
   render() {
-    const { currentDate, eventsByDate } = this.state;
-
+    const { currentDate } = this.state;
+      console.log('currentdate', currentDate)
     const ThemeCalendar = {
       calendarBackground: "#3f0d6b",   // couleur pour le fond du calendrier
       selectedDayBackgroundColor: "#48008e", // couleur quand on sélectionne le jour que l'on veux
@@ -151,7 +153,22 @@ export default class TimelineCalendarScreen extends Component {
       arrowColor: "#FFFFFF"       // couleur pour les fléches 
       
     };
+ // Filtrer les événements de datadb pour ne récupérer que ceux de la date actuelle
+  const eventsByDate = datadb.filter(event => {
+  const eventDate = event.created_at.split(' ')[0];
+  console.log('eventdate', eventDate)
+  // const eventDate = CalendarUtils.getCalendarDateString(new Date(event.created_at));
+  return eventDate === currentDate;
+});
 
+// Grouper les événements filtrés par date
+const groupedEventsByDate = groupBy(eventsByDate, event => {
+  const created = event.created_at.split(' ')[0];
+  console.log('created', created)
+  console.log('event', event)
+   return CalendarUtils.getCalendarDateString(new Date(created));
+  //return event
+});
     return (
       <CalendarProvider
         date={currentDate}
@@ -167,7 +184,7 @@ export default class TimelineCalendarScreen extends Component {
           theme={ThemeCalendar}
         />
         <TimelineList
-          events={eventsByDate}
+          events={groupedEventsByDate}
           timelineProps={this.timelineProps}
           showNowIndicator
           scrollToFirst

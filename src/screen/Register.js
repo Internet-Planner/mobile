@@ -34,6 +34,10 @@ const Register = () => {
           </Text>
         </View>
         <View style={styles.formulaire}>
+
+          <Text style={styles.text}>Username</Text>
+          <TextInput style={styles.textinput}></TextInput>
+
           <Text style={styles.text}>Email</Text>
           <TextInput style={styles.textinput}></TextInput>
 

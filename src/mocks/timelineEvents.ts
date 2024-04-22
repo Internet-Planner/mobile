@@ -1,11 +1,13 @@
 import {TimelineEventProps, CalendarUtils} from 'react-native-calendars';
+import datadb from "../../datadb.json";
 
-const EVENT_COLOR = '#FFFFFF';
 
 const today = new Date();
 export const getDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
-
-export const timelineEvents: TimelineEventProps[] = [
+console.log("date",getDate())
+export const Data= datadb
+console.log(Data)
+/* export const timelineEvents: TimelineEventProps[] = [
   {
     start: `${getDate(-1)} 09:20:00`,
     end: `${getDate(-1)} 12:00:00`,
@@ -124,4 +126,4 @@ export const timelineEvents: TimelineEventProps[] = [
     summary: 'Merge Timeline Calendar to React Native Calendars',
     color: EVENT_COLOR
   }
-];
+]; */

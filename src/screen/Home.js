@@ -103,7 +103,7 @@ const Home = () => {
                 <Text>Sign up now</Text>
               </TouchableOpacity>
             </View>
-            {/* cette View sert à faire une ligne avec une text au millieu (ps elle fait deux ligne*/}
+            {/* cette View sert à faire une ligne avec une text au millieu (elle est fait en deux ligne*/}
             <View
               style={{
                 flexDirection: "row",

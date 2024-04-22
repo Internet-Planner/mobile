@@ -3,7 +3,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Home from "../screen/Home";
 import TimelineCalendarScreen from "../screen/Calendar";
 import Register from "../screen/Register";
-import Timeline from "../screen/Timeline";
+/* import Timeline from "../screen/Timeline"; */
+import Timelinebis from "../screen/Timelinebis";
 
 
 const Tab = createBottomTabNavigator();
@@ -45,7 +46,7 @@ const BottomNav = () => {
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false}}/>
       <Tab.Screen name="Calendrier" component={TimelineCalendarScreen}/>
-      <Tab.Screen name="Timeline" component={Timeline}/>
+      <Tab.Screen name="Timelinebis" component={Timelinebis}/>
       <Tab.Screen name="Register" component={Register} options={{headerShown: false}} />
 
     </Tab.Navigator>
